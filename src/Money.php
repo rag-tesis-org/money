@@ -644,6 +644,14 @@ final readonly class Money extends AbstractMoney
     }
 
     /**
+     * Returns whether this Money is within the given range, bounds included.
+     */
+    public function isBetween(Money $min, Money $max): bool
+    {
+        return $this->isGreaterThanOrEqualTo($min) && $this->isLessThanOrEqualTo($max);
+    }
+
+    /**
      * Converts this Money to another currency, using an exchange rate.
      *
      * By default, the resulting Money is created with a DefaultContext.
