@@ -644,6 +644,32 @@ final readonly class Money extends AbstractMoney
     }
 
     /**
+     * Returns this Money limited to the given range.
+     *
+     * Returns the minimum if this Money is less than it, the maximum if this Money is greater than it,
+     * and this Money otherwise.
+     *
+     * @throws InvalidArgumentException  If the minimum is greater than the maximum.
+     * @throws CurrencyMismatchException If the bounds are in a different currency.
+     */
+    public function clamp(Money $min, Money $max): Money
+    {
+        if ($min->isGreaterThan($max)) {
+            throw new InvalidArgumentException('The minimum must not be greater than the maximum.');
+        }
+
+        if ($this->isLessThan($min)) {
+            return $min;
+        }
+
+        if ($this->isGreaterThan($max)) {
+            return $max;
+        }
+
+        return $this;
+    }
+
+    /**
      * Converts this Money to another currency, using an exchange rate.
      *
      * By default, the resulting Money is created with a DefaultContext.
