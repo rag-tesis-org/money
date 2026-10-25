@@ -83,4 +83,9 @@ final readonly class CachedProvider implements ExchangeRateProvider
 
         return $exchangeRate;
     }
+
+    public function hasTtl(): bool
+    {
+        return $this->ttl !== null;
+    }
 }
