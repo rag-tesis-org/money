@@ -83,4 +83,9 @@ final readonly class CachedProvider implements ExchangeRateProvider
 
         return $exchangeRate;
     }
+
+    public function getTtl(): int|DateInterval|null
+    {
+        return $this->ttl;
+    }
 }
