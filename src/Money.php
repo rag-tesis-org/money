@@ -387,6 +387,25 @@ final readonly class Money extends AbstractMoney
     }
 
     /**
+     * Returns the given percentage of this Money.
+     *
+     * The result is this amount multiplied by the percentage and divided by 100, rounded once to the context of this
+     * Money. If rounding is necessary and no rounding mode is provided, an exception is thrown.
+     *
+     * @param BigNumber|int|string $percent      The percentage, e.g. 15 for 15%.
+     * @param RoundingMode         $roundingMode An optional rounding mode if the amount does not fit the context.
+     *
+     * @throws MathException              If the argument is an invalid number.
+     * @throws RoundingNecessaryException If RoundingMode::Unnecessary is used and rounding is necessary.
+     */
+    public function percentage(BigNumber|int|string $percent, RoundingMode $roundingMode = RoundingMode::Unnecessary): Money
+    {
+        $amount = $this->amount->toBigRational()->multipliedBy($percent)->dividedBy(100);
+
+        return self::create($amount, $this->currency, $this->context, $roundingMode);
+    }
+
+    /**
      * Returns the result of the division of this Money by the given number.
      *
      * The resulting Money has the same context as this Money. If the result needs rounding to fit this context, a
