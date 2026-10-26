@@ -786,3 +786,5 @@ Please see [this discussion](https://github.com/brick/money/issues/28).
 ## PHPStan extension
 
 A third-party [PHPStan extension](https://github.com/simPod/phpstan-brick-money) is available for this library. It provides more specific throw type narrowing for brick/money methods, so that PHPStan can infer the exact exception classes thrown. Note that this extension is not maintained by the author of brick/money.
+
+<!-- oe2: indexación del commit congelado (EV-OE2-F0) -->
