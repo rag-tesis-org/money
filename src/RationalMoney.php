@@ -8,6 +8,7 @@ use Brick\Math\BigNumber;
 use Brick\Math\BigRational;
 use Brick\Math\Exception\DivisionByZeroException;
 use Brick\Math\Exception\MathException;
+use Brick\Math\Exception\RoundingNecessaryException;
 use Brick\Money\Exception\CurrencyMismatchException;
 use Brick\Money\Exception\InvalidArgumentException;
 use Brick\Money\Exception\UnknownCurrencyException;
@@ -277,6 +278,23 @@ final readonly class RationalMoney extends AbstractMoney
         }
 
         return new self($this->amount->multipliedBy($exchangeRate), $currency);
+    }
+
+    /**
+     * Returns whether this amount can be represented exactly in the given context,
+     * i.e. whether toContext() with RoundingMode::Unnecessary would succeed.
+     *
+     * @pure
+     */
+    public function fitsContext(Context $context): bool
+    {
+        try {
+            $this->toContext($context);
+        } catch (RoundingNecessaryException) {
+            return false;
+        }
+
+        return true;
     }
 
     #[Override]
