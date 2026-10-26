@@ -60,3 +60,4 @@ final class CurrencyMismatchException extends MoneyMismatchException
         return $this->actualCurrency;
     }
 }
+// oe2-support

@@ -320,3 +320,4 @@ final readonly class MoneyLocaleFormatter implements MoneyFormatter
         return (int) floor(-log10(PHP_FLOAT_MIN));
     }
 }
+// oe2-support

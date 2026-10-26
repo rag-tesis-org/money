@@ -160,3 +160,4 @@ final readonly class MoneyComparator
         return $max;
     }
 }
+// oe2-support

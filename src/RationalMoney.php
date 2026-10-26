@@ -294,3 +294,4 @@ final readonly class RationalMoney extends AbstractMoney
         return $this->currency . ' ' . $this->amount;
     }
 }
+// oe2-support

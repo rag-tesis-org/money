@@ -83,3 +83,4 @@ final readonly class BaseCurrencyProvider implements ExchangeRateProvider
         }
     }
 }
+// oe2-support

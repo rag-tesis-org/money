@@ -298,3 +298,4 @@ final class PdoProvider implements ExchangeRateProvider
         }
     }
 }
+// oe2-support

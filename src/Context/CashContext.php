@@ -84,3 +84,4 @@ final readonly class CashContext implements Context
         return sprintf('CashContext(step=%d)', $this->step);
     }
 }
+// oe2-support
