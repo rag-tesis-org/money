@@ -85,6 +85,19 @@ final readonly class MoneyBag implements Monetary, JsonSerializable
     }
 
     /**
+     * Returns whether this MoneyBag holds at least the given amount in the money's currency.
+     *
+     * The comparison is exact (the bag stores rational amounts). A zero or negative money
+     * is always contained.
+     *
+     * @pure
+     */
+    public function containsMoney(Money $money): bool
+    {
+        return self::get($this->monies, $money->getCurrency())->isGreaterThanOrEqualTo($money);
+    }
+
+    /**
      * Returns whether this MoneyBag has zero value (i.e. contains no non-zero amounts).
      *
      * @pure
