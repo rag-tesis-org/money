@@ -81,3 +81,4 @@ final class ContextMismatchException extends MoneyMismatchException
         return $this->actualContext;
     }
 }
+// oe2-support

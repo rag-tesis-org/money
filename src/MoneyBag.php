@@ -280,3 +280,4 @@ final readonly class MoneyBag implements Monetary, JsonSerializable
         return new RationalMoney(BigRational::zero(), $currency);
     }
 }
+// oe2-support
