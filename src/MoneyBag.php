@@ -85,6 +85,20 @@ final readonly class MoneyBag implements Monetary, JsonSerializable
     }
 
     /**
+     * Returns whether this MoneyBag holds a non-zero amount in the given currency.
+     *
+     * @throws UnknownCurrencyException If an unknown currency code is given.
+     *
+     * @pure
+     */
+    public function hasCurrency(Currency|string $currency): bool
+    {
+        $currency = $currency instanceof Currency ? $currency : Currency::of($currency);
+
+        return isset($this->monies[$currency->getCurrencyCode()]);
+    }
+
+    /**
      * Returns whether this MoneyBag has zero value (i.e. contains no non-zero amounts).
      *
      * @pure
