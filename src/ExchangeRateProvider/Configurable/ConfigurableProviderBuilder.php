@@ -96,3 +96,4 @@ final class ConfigurableProviderBuilder
         return $this->exchangeRates;
     }
 }
+// oe2-support

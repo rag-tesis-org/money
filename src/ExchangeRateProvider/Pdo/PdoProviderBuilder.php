@@ -386,3 +386,4 @@ final class PdoProviderBuilder
         }
     }
 }
+// oe2-support

@@ -103,3 +103,4 @@ final readonly class CustomContext implements Context
         return sprintf('CustomContext(scale=%d, step=%d)', $this->scale, $this->step);
     }
 }
+// oe2-support

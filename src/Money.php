@@ -800,3 +800,4 @@ final readonly class Money extends AbstractMoney
         return array_map(fn (BigInteger $ratio) => $ratio->quotient($gcd), $ratios);
     }
 }
+// oe2-support
