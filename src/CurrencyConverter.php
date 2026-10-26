@@ -113,4 +113,41 @@ final readonly class CurrencyConverter
 
         return new RationalMoney($total, $currency);
     }
+
+    /**
+     * Converts the given monies to the given currency and returns their sum.
+     *
+     * Each money is converted without rounding; the exact sum is rounded once, to the given context.
+     *
+     * @param iterable<Monetary>   $monies       The monies to convert and sum.
+     * @param Currency|string      $currency     The Currency instance or ISO currency code.
+     * @param array<string, mixed> $dimensions   Additional exchange-rate lookup dimensions (e.g., date or rate type).
+     * @param Context              $context      A context to create the money in, defaults to DefaultContext.
+     * @param RoundingMode         $roundingMode The rounding mode, if necessary.
+     *
+     * @throws UnknownCurrencyException      If an unknown currency code is given.
+     * @throws ExchangeRateNotFoundException If an exchange rate is not available.
+     * @throws ExchangeRateProviderException If an error occurs while retrieving exchange rates.
+     * @throws RoundingNecessaryException    If rounding is necessary and RoundingMode::Unnecessary is used.
+     * @throws ContextException              If the context does not apply.
+     */
+    public function convertAndSum(
+        iterable $monies,
+        Currency|string $currency,
+        array $dimensions = [],
+        Context $context = new DefaultContext(),
+        RoundingMode $roundingMode = RoundingMode::Unnecessary,
+    ): Money {
+        if (! $currency instanceof Currency) {
+            $currency = Currency::of($currency);
+        }
+
+        $total = new RationalMoney(BigRational::zero(), $currency);
+
+        foreach ($monies as $money) {
+            $total = $total->plus($this->convertToRational($money, $currency, $dimensions));
+        }
+
+        return $total->toContext($context, $roundingMode);
+    }
 }
